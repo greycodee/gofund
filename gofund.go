@@ -6,8 +6,6 @@ import (
 	"fmt"
 )
 
-
-// {"name":"hh","instance":"test","full_text":"ddd","color":"#b72e2e"}
 var confPath = flag.String("config","$HOME/.i3/gofund.conf","基金代码配置文件")
 func main()  {
 	urls:=requestUrls()
