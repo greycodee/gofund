@@ -12,6 +12,7 @@ var interval = flag.Int64("interval",5,"刷新间隔(秒)")
 
 var urls []string
 func init() {
+	flag.Parse()
 	urls=requestUrls()
 }
 
