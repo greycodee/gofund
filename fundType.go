@@ -1,7 +1,10 @@
 package main
 
 
-type fund struct {
+/*
+	天天基金接口返回
+*/
+type TTFund struct {
 	Fundcode string `json:"fundcode"`
 	Name string `json:"name"`
 	Jzrq string `json:"jzrq"`

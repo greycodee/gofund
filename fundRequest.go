@@ -10,7 +10,7 @@ import (
 )
 
 func requestFund(u string) (i3status,bool)  {
-	var res fund
+	var res TTFund
 	var i3 i3status
 
 	param:=url.Values{}
@@ -48,4 +48,11 @@ func requestFund(u string) (i3status,bool)  {
 	}
 	i3.FullText=res.Name+":"+j+res.Gszzl
 	return i3,true
+}
+
+/*
+	天天基金接口
+*/
+func ttApi()  {
+
 }

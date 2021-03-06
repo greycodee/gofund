@@ -34,12 +34,20 @@ func main()  {
 				firstAdd=false
 			}
 		}
-		j,_:=json.Marshal(result)
-		fmt.Println(string(j))
+		i3out(result)
 		time.Sleep(time.Duration(i))
 	}
 
 }
+
+/*
+	i3status格式输出
+*/
+func i3out(r []i3status)  {
+	j,_:=json.Marshal(r)
+	fmt.Println(string(j))
+}
+
 
 /*
 	循环请求所有基金url，拼接结果
