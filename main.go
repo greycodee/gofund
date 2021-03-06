@@ -22,7 +22,7 @@ func main()  {
 	i:=*interval*1e9
 
 	for  {
-		// 判断时间是否在交易日的8:55点和15:05点之间
+		// 判断时间是否在交易时间内
 		if isTransDay() {
 			result=fundDetail()
 			// 重置休市提示
