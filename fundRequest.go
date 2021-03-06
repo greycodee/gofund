@@ -36,7 +36,6 @@ func requestFund(u string) (i3status,bool)  {
 	// 删除头部8个字符
 	bodyString=bodyString[8:]
 
-
 	_=json.Unmarshal([]byte(bodyString),&res)
 	gszzl,_ := strconv.ParseFloat(res.Gszzl,64)
 	i3.Instance=res.Fundcode
