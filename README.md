@@ -9,11 +9,12 @@
 <div align=center>
 	<img height=300px width=300px align=center src="http://cdn.mjava.top/blog/diugai.com161509264492359.png"/>
 </div>
+
 ## 简介
 
 本脚本是基于`Go语言`编写一个基金行情查看脚本，输出格式支持`i3status`和`终端输出(开发中)`，如果要集成到`i3status中`，需要用到另一个插件[i3cat](https://github.com/vincent-petithory/i3cat)。
 
-效果展示：
+`i3bar`效果展示：
 
 ![20210307130219](http://cdn.mjava.top/blog/20210307130219.png)
 
