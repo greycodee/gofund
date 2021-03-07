@@ -1,4 +1,4 @@
-package main
+package base
 
 import (
 	"time"
@@ -7,7 +7,7 @@ import (
 /*
 	判断是否是交易日 [后续加上法定节假日]
 */
-func isTransDay() bool {
+func IsTransDay() bool {
 	t := time.Now()
 	if t.Weekday()==time.Weekday(6) || t.Weekday()==time.Weekday(0) {
 		return false

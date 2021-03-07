@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"github.com/greycodee/gofund/api"
+	"github.com/greycodee/gofund/base"
+	"github.com/greycodee/gofund/out"
 )
 
 var confPath = flag.String("config","$HOME/.i3/gofund.conf","基金代码配置文件")
@@ -13,20 +15,25 @@ var fundServer = flag.Int64("api",1,"api服务选择:\n1    天天基金api")
 var codes []string
 func init() {
 	flag.Parse()
-	codes=readConfig()
+	codes= base.ReadConfig(*confPath)
 }
 
 func main()  {
-	out:=chosePrint()
-	out.Print()
+	op:=chosePrint()
+	factor:=out.Factor{
+		Codes: codes,
+		Server: choseApi(),
+		Interval: *interval,
+	}
+	op.Print(factor)
 }
 
-func chosePrint() PrintFormat{
+func chosePrint() out.PrintFormat{
 	switch *o {
 	case 1:
-		return i3status{}
+		return out.I3status{}
 	case 2:
-		return i3status{}
+		return out.I3status{}
 	default:
 		panic("所选输出格式不存在")
 	}
@@ -34,30 +41,10 @@ func chosePrint() PrintFormat{
 
 func choseApi() api.Fund {
 	switch *fundServer {
-		case 1:
-			return api.TTFund{}
-		default:
-			panic("选择api服务不支持")
+	case 1:
+		return api.TTFund{}
+	default:
+		panic("选择api服务不支持")
 	}
-}
-
-/*
-	循环请求所有基金，拼接结果
-*/
-func fundDetail() []api.GoFund {
-	var result []api.GoFund
-	// 选择基金接口
-	server:=choseApi()
-	for _,code:= range codes{
-		f,t:=server.Api(code)
-		if t==nil {
-			result=append(result,f)
-		}
-	}
-	return result
-}
-
-type PrintFormat interface {
-	Print()
 }
 
