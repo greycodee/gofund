@@ -19,7 +19,7 @@
 
 ![20210307130319](http://cdn.mjava.top/blog/20210307130319.png)
 
-![20210307130656](http://cdn.mjava.top/blog/20210307130656.png)
+![Screenshot from 2021-03-07 14-32-13](http://cdn.mjava.top/blog/Screenshot from 2021-03-07 14-32-13.png)
 
 ## 安装
 
