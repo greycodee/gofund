@@ -29,3 +29,4 @@
 go get github.com/greycodee/gofund
 ```
 
+或者直接下载压缩包
