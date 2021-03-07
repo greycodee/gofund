@@ -1,85 +1,63 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
-	"fmt"
-	"time"
+	"github.com/greycodee/gofund/api"
 )
 
 var confPath = flag.String("config","$HOME/.i3/gofund.conf","基金代码配置文件")
 var interval = flag.Int64("interval",5,"刷新间隔(秒)")
+var o = flag.Int64("o",1,"输出格式:\n1    i3status格式\n2    终端命令行格式")
+var fundServer = flag.Int64("api",1,"api服务选择:\n1    天天基金api")
 
-var urls []string
+var codes []string
 func init() {
 	flag.Parse()
-	urls=requestUrls()
+	codes=readConfig()
 }
 
 func main()  {
-	result:=fundDetail()
-	firstAdd:=true
-	i:=*interval*1e9
+	out:=chosePrint()
+	out.Print()
+}
 
-	for  {
-		// 判断时间是否在交易时间内
-		if isTransDay() {
-			result=fundDetail()
-			// 重置休市提示
-			firstAdd=true
-		}else {
-			// 第一次添加休市提示
-			if firstAdd {
-				result=append(result,addTips())
-				firstAdd=false
-			}
-		}
-		i3out(result)
-		time.Sleep(time.Duration(i))
+func chosePrint() PrintFormat{
+	switch *o {
+	case 1:
+		return i3status{}
+	case 2:
+		return i3status{}
+	default:
+		panic("所选输出格式不存在")
 	}
+}
 
+func choseApi() api.Fund {
+	switch *fundServer {
+		case 1:
+			return api.TTFund{}
+		default:
+			panic("选择api服务不支持")
+	}
 }
 
 /*
-	i3status格式输出
+	循环请求所有基金，拼接结果
 */
-func i3out(r []i3status)  {
-	j,_:=json.Marshal(r)
-	fmt.Println(string(j))
-}
-
-
-/*
-	循环请求所有基金url，拼接结果
-*/
-func fundDetail() []i3status {
-	var result []i3status
-	for _,v:= range urls{
-		i3,t:=requestFund(v)
-		if t {
-			result=append(result,i3)
+func fundDetail() []api.GoFund {
+	var result []api.GoFund
+	// 选择基金接口
+	server:=choseApi()
+	for _,code:= range codes{
+		f,t:=server.Api(code)
+		if t==nil {
+			result=append(result,f)
 		}
 	}
 	return result
 }
 
-/*
-	添加休市文本
-*/
-func addTips() i3status{
-	i3:=i3status{
-		Name: "休市",
-		Instance: "close",
-		Color: PINK,
-		FullText: "【休市中】",
-	}
-	return i3
+type PrintFormat interface {
+	Print()
 }
-
-
-const(
-	RED="#b72e2e"
-	GREEN="#50b72e"
-	PINK="#ffe6f9"
-)
 

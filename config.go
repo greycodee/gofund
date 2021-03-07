@@ -30,18 +30,3 @@ func readConfig() []string {
 	}
 	return fundCodes
 }
-
-
-/*
-	拼接天天基金url
-*/
-func requestUrls() []string{
-	codes:=readConfig()
-	TTFundUrl:="http://fundgz.1234567.com.cn/js/"
-	var result []string
-	for _,c := range codes{
-		url:=TTFundUrl+c+".js"
-		result=append(result,url)
-	}
-	return result
-}
