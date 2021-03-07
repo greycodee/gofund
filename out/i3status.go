@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-// [{"name": "mpd", "instance": "now playing", "full_text": " '${status}' '$1'", "color": "'${color}'"}]
+// [{"name": "mpd", "instance": "now playing", "full_text": "'${status}' '$1'", "color": "'${color}'"}]
 type I3status struct {
 	Name string `json:"name"`
 	Instance string `json:"instance"`
@@ -17,32 +17,26 @@ type I3status struct {
 }
 
 func (i3 I3status) Print(factor Factor)  {
-	result:= convert(factor)
-	firstAdd:=true
-	i:=factor.Interval *1e9
+	result:= i3.convert(factor)
+	var temp []I3status
 	for  {
 		// 判断时间是否在交易时间内
 		if base.IsTransDay() {
-			result= convert(factor)
-			// 重置休市提示
-			firstAdd=true
+			result= i3.convert(factor)
+			temp=result
 		}else {
-			// 第一次添加休市提示
-			if firstAdd {
-				result=append(result, addTips())
-				firstAdd=false
-			}
+			temp=append(result,i3.addTips())
 		}
-		j,_:=json.Marshal(result)
+		j,_:=json.Marshal(temp)
 		fmt.Println(string(j))
-		time.Sleep(time.Duration(i))
+		time.Sleep(time.Duration(factor.Interval))
 	}
 }
 
 /*
 	结果转换
 */
-func convert(factor Factor) []I3status {
+func (i3 I3status) convert(factor Factor) []I3status {
 	var result []I3status
 	f:= fundDetail(factor)
 	for _,v:=range f {
@@ -62,14 +56,14 @@ func convert(factor Factor) []I3status {
 /*
 	添加休市文本
 */
-func addTips() I3status {
-	i3:= I3status{
+func (i3 I3status) addTips() I3status {
+	i:= I3status{
 		Name:     "休市",
 		Instance: "close",
 		Color:    PINK,
-		FullText: "【休市中】",
+		FullText: fmt.Sprintf("【休市中:%s】",time.Now().Format("2006-01-02 15:04:05")),
 	}
-	return i3
+	return i
 }
 
 const(

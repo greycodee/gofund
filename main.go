@@ -23,7 +23,7 @@ func main()  {
 	factor:=out.Factor{
 		Codes: codes,
 		Server: choseApi(),
-		Interval: *interval,
+		Interval: *interval*1e9,
 	}
 	op.Print(factor)
 }
@@ -33,7 +33,7 @@ func chosePrint() out.PrintFormat{
 	case 1:
 		return out.I3status{}
 	case 2:
-		return out.I3status{}
+		return out.Terminal{}
 	default:
 		panic("所选输出格式不存在")
 	}
