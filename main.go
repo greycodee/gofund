@@ -7,7 +7,7 @@ import (
 	"github.com/greycodee/gofund/out"
 )
 
-var confPath = flag.String("config","$HOME/.i3/gofund.conf","基金代码配置文件")
+var confPath = flag.String("config","$HOME/.fund/gofund.conf","基金代码配置文件")
 var interval = flag.Int64("interval",5,"刷新间隔(秒)")
 var o = flag.Int64("o",1,"输出格式:\n1    i3status格式\n2    终端命令行格式")
 var fundServer = flag.Int64("api",1,"api服务选择:\n1    天天基金api")
