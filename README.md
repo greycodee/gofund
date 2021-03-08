@@ -1,10 +1,10 @@
 <h1 align="center">gofund</h1>
 <p align=center>i3bar/命令行终端显示基金行情脚本</p>
 <div align=center>
-    <img src="https://img.shields.io/badge/Go-%3E=1.14.6-red?logo=go&color=00ADD8&style=flat&link=https://golang.org/"/>
-    <img src="https://img.shields.io/badge/Ubuntu-18.04.2-red?logo=Ubuntu&color=E95420&style=flat&link=https://ubuntu.com/"/>
-    <img src="https://img.shields.io/badge/i3bar-i3cat-red?color=1793D1&style=flat&link=http://vincent-petithory.github.io/i3cat/"/>
-    <img src="https://img.shields.io/badge/i3bar-i3status-red?color=1793D1&style=flat&link=https://wiki.archlinux.org/index.php/I3_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)"/>
+	<a href="https://golang.org/"><img src="https://img.shields.io/badge/Go-%3E=1.14.6-red?logo=go&color=00ADD8&style=flat" /></a>
+    <a href="https://ubuntu.com/"><img src="https://img.shields.io/badge/Ubuntu-18.04.2-red?logo=Ubuntu&color=E95420&style=flat"/></a>
+    <a href="http://vincent-petithory.github.io/i3cat/"><img src="https://img.shields.io/badge/i3bar-i3cat-red?color=1793D1&style=flat"/></a>
+    <a href="https://wiki.archlinux.org/index.php/I3_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)"><img src="https://img.shields.io/badge/i3bar-i3status-red?color=1793D1&style=flat"/></a>
     <img src="https://img.shields.io/badge/Terminal-Linux/Win-red?color=4D4D4D&logo=Windows%20Terminal&style=flat"/>
 </div>
 <div align=center>
