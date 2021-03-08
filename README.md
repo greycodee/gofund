@@ -28,7 +28,19 @@
 
 ![Peekgofund](http://cdn.mjava.top/blog/Peekgofund.gif)
 
-## 安装
+## 功能
+
+- [x] i3wm/i3bar支持
+- [x] 命令行支持
+- [x] 动态颜色显示
+- [x] 休市提醒
+- [x] 摸鱼神器
+- [x] 超级隐蔽
+- [ ] ~~股票~~
+
+
+
+## 快速开始
 
 使用`Go`安装，执行命令
 
