@@ -41,10 +41,7 @@ func isTransTime() bool {
 */
 func isHoliday() bool {
 	nowDay:=time.Now().Format("20060102")
-	if holidays[nowDay] {
-		return false
-	}
-	return true
+	return holidays[nowDay]
 }
 
 /*
