@@ -66,7 +66,7 @@ func (i3 I3status) addTips() I3status {
 	return i
 }
 
-const(
+var (
 	RED="#b72e2e"
 	GREEN="#50b72e"
 	PINK="#ffe6f9"
